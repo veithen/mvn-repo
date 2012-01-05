@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.github.veithen.ulog</groupId>
+  <artifactId>itest-slf4j-nop</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20120105.102103</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20120105102103</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>0.1.0-20120105.102103-1</value>
+        <updated>20120105102103</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>0.1.0-20120105.102103-1</value>
+        <updated>20120105102103</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
