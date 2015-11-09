@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>log4j</groupId>
+  <artifactId>log4j-optional</artifactId>
+  <version>1.3alpha-7</version>
+  <versioning>
+    <versions>
+      <version>1.3alpha-7</version>
+    </versions>
+    <lastUpdated>20100808225032</lastUpdated>
+  </versioning>
+</metadata>
