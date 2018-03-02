@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  Cosmos
+  %%
+  Copyright (C) 2012 - 2018 Andreas Veithen
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/1/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.veithen.cosmos</groupId>
+        <artifactId>cosmos</artifactId>
+        <version>20180302</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>bootstrap</artifactId>
+    <packaging>pom</packaging>
+
+    <url>https://github.com/veithen/cosmos</url>
+
+    <modules>
+        <module>org.eclipse.core.jobs</module>
+        <module>org.eclipse.ecf</module>
+        <module>org.eclipse.ecf.filetransfer</module>
+        <module>org.eclipse.ecf.identity</module>
+        <module>org.eclipse.ecf.provider.filetransfer</module>
+        <module>org.eclipse.ecf.provider.filetransfer.httpclient4</module>
+        <module>org.eclipse.equinox.common</module>
+        <module>org.eclipse.equinox.p2.artifact.repository</module>
+        <module>org.eclipse.equinox.p2.core</module>
+        <module>org.eclipse.equinox.p2.jarprocessor</module>
+        <module>org.eclipse.equinox.p2.metadata</module>
+        <module>org.eclipse.equinox.p2.publisher</module>
+        <module>org.eclipse.equinox.p2.publisher.eclipse</module>
+        <module>org.eclipse.equinox.p2.repository</module>
+        <module>org.eclipse.equinox.p2.transport.ecf</module>
+        <module>org.eclipse.equinox.p2.updatesite</module>
+        <module>org.eclipse.equinox.preferences</module>
+        <module>org.eclipse.equinox.registry</module>
+        <module>org.eclipse.equinox.security</module>
+        <module>org.eclipse.osgi</module>
+        <module>org.eclipse.osgi.compatibility.state</module>
+        <module>org.eclipse.osgi.services</module>
+        <module>org.eclipse.osgi.util</module>
+        <module>org.tukaani.xz</module>
+    </modules>
+
+    <scm>
+        <url>https://github.com/veithen/cosmos/tree/master</url>
+        <connection>scm:git:http://github.com/veithen/cosmos.git</connection>
+        <developerConnection>scm:git:https://github.com/veithen/cosmos.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <repositories>
+        <repository>
+            <id>p2-neon</id>
+            <name>Neon release repository</name>
+            <url>p2:http://download.eclipse.org/releases/neon</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <version>1.2</version>
+                <executions>
+                    <execution>
+                        <id>initialize</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <source>
+                                project.properties['skipCopy'] = project.packaging == "jar" ? "false" : "true"
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.8</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skipCopy}</skip>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>osgi.bundle</groupId>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                    <version>${bundleVersion}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <destFileName>${project.build.finalName}.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>osgi.bundle</groupId>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                    <version>${bundleVersion}</version>
+                                    <classifier>sources</classifier>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <destFileName>${project.build.finalName}-sources.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <skipAttach>${skipCopy}</skipAttach>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/${project.build.finalName}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <extensions>
+            <extension>
+                <groupId>com.github.veithen.cosmos</groupId>
+                <artifactId>wagon-p2</artifactId>
+                <!-- Note: we bootstrap the build using a previous Cosmos version -->
+                <version>20150901</version>
+            </extension>
+        </extensions>
+    </build>
+</project>
