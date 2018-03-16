@@ -6,5 +6,15 @@
       <prefix>p2</prefix>
       <artifactId>p2-maven-plugin</artifactId>
     </plugin>
+    <plugin>
+      <name>p2-publisher-maven-plugin</name>
+      <prefix>p2-publisher</prefix>
+      <artifactId>p2-publisher-maven-plugin</artifactId>
+    </plugin>
+    <plugin>
+      <name>p2-bundle-import-maven-plugin</name>
+      <prefix>p2-bundle-import</prefix>
+      <artifactId>p2-bundle-import-maven-plugin</artifactId>
+    </plugin>
   </plugins>
 </metadata>
