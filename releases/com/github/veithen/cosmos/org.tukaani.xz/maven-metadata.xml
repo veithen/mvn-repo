@@ -3,11 +3,12 @@
   <groupId>com.github.veithen.cosmos</groupId>
   <artifactId>org.tukaani.xz</artifactId>
   <versioning>
-    <release>20180316</release>
+    <release>20180317</release>
     <versions>
       <version>20180302</version>
       <version>20180316</version>
+      <version>20180317</version>
     </versions>
-    <lastUpdated>20180316000147</lastUpdated>
+    <lastUpdated>20180317114944</lastUpdated>
   </versioning>
 </metadata>
