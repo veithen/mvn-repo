@@ -3,11 +3,12 @@
   <groupId>com.github.veithen.cosmos</groupId>
   <artifactId>org.eclipse.equinox.simpleconfigurator.manipulator</artifactId>
   <versioning>
-    <release>20180317</release>
+    <release>20180318</release>
     <versions>
       <version>20180316</version>
       <version>20180317</version>
+      <version>20180318</version>
     </versions>
-    <lastUpdated>20180317115005</lastUpdated>
+    <lastUpdated>20180318181115</lastUpdated>
   </versioning>
 </metadata>
